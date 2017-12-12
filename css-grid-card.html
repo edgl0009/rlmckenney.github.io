@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Responsive CSS Grid</title>
+  <link rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <style>
+    html {
+      box-sizing: border-box;
+      font-size: 14px;
+      font-family: 
+        -apple-system, 
+        BlinkMacSystemFont, 
+        'Segoe UI', 
+        Roboto, 
+        Oxygen, 
+        Ubuntu, 
+        Cantarell, 
+        'Open Sans', 
+        'Helvetica Neue', 
+        sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: rgba(75,0,130,0.06);
+      padding: 0.5rem;
+    }
+    h1 {
+      color: rgba(0,0,0,.54);
+      font-size: 1.6rem;
+    }
+    .container {
+      display: grid;
+      grid-gap: 0.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+      grid-auto-rows: 420px;
+      grid-auto-flow: row dense;
+    }
+    .card {
+      background-color: #feffff;
+      border-radius: 0.25rem;
+      box-shadow: 0 1px 0.75rem rgba(0,0,0,.23);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .card-image {
+      flex-grow: 1;
+      height: 200px;
+    }
+    .card-image > img,
+    .container > div > img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+    .card-body {
+      height: 200px;
+      padding: 0.5em;
+      transition: all .25s;
+    }
+    .card-title {
+      font-size: 1.25em;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .card-footer { 
+      margin: auto 0 1em 0; 
+      padding: 0 0.5em;
+      transition: all .25s; 
+    }
+    .card-footer button {
+      background-color: transparent;
+      border: 1px solid indigo;
+      border-radius: 0.25rem;
+      color: indigo;
+      line-height: 1em;
+      padding: 0.5em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .card-footer button:focus,
+    .card-footer button:hover {
+      background-color: indigo;
+      color: rgba(255,255,255,0.9);
+    }
+    .cover {
+      visibility: hidden;
+      height: 0;
+      margin: 0;
+      opacity: 0;
+      padding: 0;
+      transition: all .4s;
+    }
+    @media screen and (min-width: 500px) {
+      .wide {
+        grid-column: span 2;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS-Grid Cards</h1>
+  <div class="container">
+      <div class="card">
+        <div class="card-image">
+          <img src="http://www.gstatic.com/webp/gallery/1.jpg" alt="">
+        </div>
+        <div class="card-body cover">
+          <p class="card-title">Mountain lake</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+            Earum nostrum sequi sed officia consequuntur debitis illum 
+            sint ipsam provident pariatur.</p>
+        </div>
+        <div class="card-footer cover">
+          <button type="button">Buy now</button>
+        </div>
+      </div>
+      <div class="card wide">
+        <div class="card-image">
+          <img src="http://www.gstatic.com/webp/gallery/2.jpg" alt="">
+        </div>
+        <div class="card-body cover">
+          <p class="card-title">White water kyaking</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+            </p>
+        </div>
+        <div class="card-footer cover">
+            <button type="button">Buy now</button>
+          </div>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <img src="http://www.gstatic.com/webp/gallery/3.jpg" alt="">
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <img src="http://www.gstatic.com/webp/gallery/4.jpg" alt="">
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <img src="http://www.gstatic.com/webp/gallery/5.jpg" alt="">
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <img src="http://www.gstatic.com/webp/gallery/1.jpg" alt="">
+        </div>
+      </div>
+    </div>
+    <!-- Load jQuery from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Our custom script -->
+    <script>
+      const toggleCover = function() {
+          $(this).children('.card-body').toggleClass('cover')
+          $(this).children('.card-footer').toggleClass('cover')
+        }
+      $(document).ready(
+        $('.card').hover(toggleCover)
+          // the .hover method is a shortcut for aplying the
+          // same function to these two separate events:x`
+          // .on('mouseenter', toggleCover)
+          // .on('mouseleave', toggleCover)
+      )
+    </script>
+</body>
+</html>
